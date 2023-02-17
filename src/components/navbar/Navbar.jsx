@@ -28,9 +28,9 @@ const Navbar = () => {
     <div className={active ? "navbar active" : "navbar"}>
       <div className="container">
         <div className="logo">
-          {/* <Link to="/"> */}
-          <span className="text">Freelancer</span>
-          {/* </Link> */}
+          <Link to="/" className="link">
+            <span className="text">Freelancer</span>
+          </Link>
           <span className="dot">.</span>
         </div>
         <div className="links">
@@ -50,13 +50,23 @@ const Navbar = () => {
                 <div className="options">
                   {currentUser?.isSeller && (
                     <>
-                      <span>Gigs</span>
-                      <span>Add New Gig</span>
+                      <Link to="/mygigs" className="link">
+                        Gigs
+                      </Link>
+                      <Link to="/add" className="link">
+                        Add New Gig
+                      </Link>
                     </>
                   )}
-                  <span>Orders</span>
-                  <span>Messages</span>
-                  <span>Logout</span>
+                  <Link to="/orders" className="link">
+                    Orders
+                  </Link>
+                  <Link to="/messages" className="link">
+                    Messages
+                  </Link>
+                  <Link to="/" className="link">
+                    Logout
+                  </Link>
                 </div>
               )}
             </div>
