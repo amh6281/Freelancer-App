@@ -39,7 +39,7 @@ const Navbar = () => {
           <span>Freelancer BusIness</span>
           <span>Explore</span>
           <span>Korean</span>
-          {!currentUser?.isSeller && <span>Become a Seller</span>}
+          {!currentUser?.isSeller && <span>전문가 등록</span>}
           {currentUser ? (
             <div className="user" onClick={() => setOpen(!open)}>
               <img
