@@ -1,9 +1,9 @@
 import React from "react";
-import "./Featured.scss";
+import "./Banner.scss";
 
-const Featured = () => {
+const Banner = () => {
   return (
-    <div className="featured">
+    <div className="banner">
       <div className="container">
         <div className="left">
           <h1>
@@ -33,4 +33,4 @@ const Featured = () => {
   );
 };
 
-export default Featured;
+export default Banner;
