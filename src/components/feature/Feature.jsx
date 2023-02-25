@@ -33,7 +33,7 @@ const Feature = () => {
             <p>24시간 언제 어디서나 도움을 드릴 수 있습니다.</p>
           </div>
           <div className="item">
-            <video src="./img/video.mp4" controls />
+            <video src="" controls />
           </div>
         </div>
       </div>
