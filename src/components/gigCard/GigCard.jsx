@@ -3,8 +3,13 @@ import { Link } from "react-router-dom";
 import "./GigCard.scss";
 
 const GigCard = ({ gig }) => {
+  const options = {
+    style: "currency",
+    currency: "krw",
+  };
+
   return (
-    <Link to="/gig/123">
+    <Link to="/gig/123" className="link">
       <div className="gigCard">
         <img src={gig.img} alt="" />
         <div className="info">
@@ -22,8 +27,9 @@ const GigCard = ({ gig }) => {
         <div className="details">
           <img src="./img/heart.png" alt="" />
           <div className="price">
-            <span>STARTING AT</span>
-            <h2>${gig.price}</h2>
+            <h2>
+              {new Intl.NumberFormat("ko-KR", options).format(gig.price)}~
+            </h2>
           </div>
         </div>
       </div>
