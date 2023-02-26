@@ -2,6 +2,7 @@ import React from "react";
 import "./App.scss";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Home from "./pages/home/Home";
+import Gigs from "./pages/gigs/Gigs";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 
@@ -24,6 +25,10 @@ const App = () => {
         {
           path: "/",
           element: <Home />,
+        },
+        {
+          path: "/gigs",
+          element: <Gigs />,
         },
       ],
     },
