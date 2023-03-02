@@ -15,7 +15,7 @@ const Gigs = () => {
   return (
     <div className="gigs">
       <div className="container">
-        <span className="breadcrumbs">
+        <span className="breadCrumbs">
           Freelancer &gt; Graphic & Design &gt;
         </span>
         <h1>AI Artist</h1>
