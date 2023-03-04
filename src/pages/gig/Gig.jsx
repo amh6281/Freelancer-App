@@ -7,7 +7,7 @@ function Gig() {
     <div className="gig">
       <div className="container">
         <div className="left">
-          <span className="breadcrumbs">
+          <span className="breadCrumbs">
             Freelancer &gt; Graphic & Design &gt;
           </span>
           <h1>AI 기반의 그림을 만들어드립니다!</h1>
