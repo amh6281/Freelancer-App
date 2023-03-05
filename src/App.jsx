@@ -35,6 +35,10 @@ const App = () => {
           path: "/gig/:id",
           element: <Gig />,
         },
+        {
+          path: "/myGigs",
+          element: <MyGigs />,
+        },
       ],
     },
   ]);
