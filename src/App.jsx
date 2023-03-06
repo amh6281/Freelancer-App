@@ -6,6 +6,7 @@ import Gigs from "./pages/gigs/Gigs";
 import Gig from "./pages/gig/Gig";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
+import MyGigs from "./pages/myGigs/MyGigs";
 
 const App = () => {
   const Layout = () => {
