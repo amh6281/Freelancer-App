@@ -8,28 +8,91 @@ const MyGigs = () => {
       <div className="container">
         <div className="title">
           <h1>프로젝트</h1>
-          <Link to="/add">새 프로젝트 추가</Link>
+          <Link to="/add">
+            <button>새 프로젝트 추가</button>
+          </Link>
         </div>
         <table>
           <tr>
-            <th>이미지</th>
+            <th>썸네일</th>
             <th>제목</th>
             <th>가격</th>
-            <th>판매</th>
+            <th>판매량</th>
             <th>상태</th>
           </tr>
           <tr>
             <td>
               <img
+                className="image"
                 src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
                 alt=""
               />
             </td>
             <td>Gig1</td>
-            <td>88</td>
-            <td>123</td>
+            <td>39,000원</td>
+            <td>3개</td>
             <td>
-              <img src="/img/delete.png" alt="" />
+              <img className="delete" src="/img/delete.png" alt="" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img
+                className="image"
+                src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                alt=""
+              />
+            </td>
+            <td>Gig1</td>
+            <td>39,000원</td>
+            <td>3개</td>
+            <td>
+              <img className="delete" src="/img/delete.png" alt="" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img
+                className="image"
+                src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                alt=""
+              />
+            </td>
+            <td>Gig1</td>
+            <td>39,000원</td>
+            <td>3개</td>
+            <td>
+              <img className="delete" src="/img/delete.png" alt="" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img
+                className="image"
+                src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                alt=""
+              />
+            </td>
+            <td>Gig1</td>
+            <td>39,000원</td>
+            <td>3개</td>
+            <td>
+              <img className="delete" src="/img/delete.png" alt="" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img
+                className="image"
+                src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                alt=""
+              />
+            </td>
+            <td>Gig1</td>
+            <td>39,000원</td>
+            <td>3개</td>
+            <td>
+              <img className="delete" src="/img/delete.png" alt="" />
             </td>
           </tr>
         </table>
