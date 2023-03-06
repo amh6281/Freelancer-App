@@ -7,6 +7,7 @@ import Gig from "./pages/gig/Gig";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import MyGigs from "./pages/myGigs/MyGigs";
+import Orders from "./pages/orders/Orders";
 
 const App = () => {
   const Layout = () => {
@@ -39,6 +40,10 @@ const App = () => {
         {
           path: "/myGigs",
           element: <MyGigs />,
+        },
+        {
+          path: "/orders",
+          element: <Orders />,
         },
       ],
     },
