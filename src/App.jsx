@@ -8,6 +8,7 @@ import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import MyGigs from "./pages/myGigs/MyGigs";
 import Orders from "./pages/orders/Orders";
+import Messages from "./pages/messages/Messages";
 
 const App = () => {
   const Layout = () => {
@@ -44,6 +45,10 @@ const App = () => {
         {
           path: "/orders",
           element: <Orders />,
+        },
+        {
+          path: "/messages",
+          element: <Messages />,
         },
       ],
     },
