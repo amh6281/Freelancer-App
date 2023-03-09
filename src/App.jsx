@@ -9,6 +9,7 @@ import Footer from "./components/footer/Footer";
 import MyGigs from "./pages/myGigs/MyGigs";
 import Orders from "./pages/orders/Orders";
 import Messages from "./pages/messages/Messages";
+import Message from "./pages/message/Message";
 
 const App = () => {
   const Layout = () => {
@@ -49,6 +50,10 @@ const App = () => {
         {
           path: "/messages",
           element: <Messages />,
+        },
+        {
+          path: "/message/:id",
+          element: <Message />,
         },
       ],
     },
