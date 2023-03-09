@@ -1,0 +1,49 @@
+.message {
+  display: flex;
+  justify-content: center;
+
+  .container {
+    width: 1200px;
+    margin: 50px;
+
+    .breadCrumbs {
+      font-weight: 300;
+      font-size: 13px;
+      color: #555;
+    }
+
+    .messages {
+      margin: 30px 0px;
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      height: 500px;
+      overflow: scroll;
+
+      .item {
+        display: flex;
+        gap: 20px;
+        max-width: 600px;
+        font-size: 16px;
+
+        img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        p {
+          padding: 20px;
+          background-color: rgb(238, 235, 235);
+          border-radius: 0px 20px 20px 20px;
+          color: black;
+          font-weight: 400;
+        }
+      }
+    }
+    .write {
+    }
+  }
+}
