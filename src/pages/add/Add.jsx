@@ -1,4 +1,5 @@
 import React from "react";
+import "./Add.scss";
 
 const Add = () => {
   return (
@@ -41,6 +42,7 @@ const Add = () => {
               cols="30"
               rows="10"
             />
+            <label htmlFor="">소요 시간 ex) 3일 </label>
             <input type="number" />
             <label htmlFor="">Revision Number</label>
             <input type="number" />
