@@ -44,7 +44,7 @@ const Add = () => {
             />
             <label htmlFor="">소요 시간 ex) 3일 </label>
             <input type="number" />
-            <label htmlFor="">Revision Number</label>
+            <label htmlFor="">수정 가능 횟수</label>
             <input type="number" />
             <label htmlFor="">기능 추가</label>
             <input type="text" placeholder="ex) 페이지 디자인" />

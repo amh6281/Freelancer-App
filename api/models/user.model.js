@@ -1,41 +1,41 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
-const userSchema = new Schema(
+const UserSchema = new Schema(
   {
-    usename: {
+    username: {
       type: String,
-      require: true,
+      required: true,
       unique: true,
     },
     email: {
       type: String,
-      require: true,
+      required: true,
       unique: true,
     },
     password: {
       type: String,
-      require: true,
+      required: true,
     },
     img: {
       type: String,
-      require: false,
+      required: false,
     },
     country: {
       type: String,
-      require: true,
+      required: true,
     },
     phone: {
       type: String,
-      require: false,
+      required: false,
     },
     desc: {
       type: String,
-      require: false,
+      required: false,
     },
     isSeller: {
       type: Boolean,
-      require: true,
+      required: true,
     },
   },
   {
@@ -43,4 +43,4 @@ const userSchema = new Schema(
   }
 );
 
-export default mongoose.model("User", userSchema);
+export default mongoose.model("User", UserSchema);

@@ -240,7 +240,7 @@ function Gig() {
             </div>
             <div className="item">
               <img src="/img/recycle.png" alt="" />
-              <span>리뷰 3개</span>
+              <span>3번 수정 가능</span>
             </div>
           </div>
           <div className="features">
