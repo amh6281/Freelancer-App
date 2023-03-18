@@ -17,6 +17,7 @@ const connect = async () => {
   }
 };
 
+// json 형식 사용
 app.use(express.json());
 
 app.use("/api/auth", authRoute);
