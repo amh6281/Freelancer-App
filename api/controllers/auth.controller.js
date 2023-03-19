@@ -45,4 +45,13 @@ export const login = async (req, res, next) => {
   }
 };
 
-export const logout = async (req, res) => {};
+export const logout = async (req, res) => {
+  res
+    .clearCookie("accessToken", {
+      //브라우저는 5273, 서버는 8800이므로 sameSite:none
+      sameSite: "none",
+      secure: true,
+    })
+    .status(200)
+    .send("로그아웃 되었습니다.");
+};
