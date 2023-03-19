@@ -1,5 +1,6 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export const register = async (req, res) => {
   try {
@@ -26,9 +27,17 @@ export const login = async (req, res) => {
     if (!isCorrect)
       return res.status(400).send("아이디 혹은 비밀번호가 잘못되었습니다.");
 
+    const token = jwt.sign(
+      {
+        id: user._id,
+        isSeller: user.isSeller,
+      },
+      process.env.JWT_KEY
+    );
+
     //password와 나머지 info를 분리
     const { password, ...info } = user._doc;
-    res.status(200).send(info);
+    res.cookie("accessToken", token, { httpOnly: true }).status(200).send(info);
   } catch (err) {
     res.status(500).send("잘못된 접근입니다.");
   }
