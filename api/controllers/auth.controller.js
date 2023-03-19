@@ -1,8 +1,9 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { createError } from "../utils/createError.js";
 
-export const register = async (req, res) => {
+export const register = async (req, res, next) => {
   try {
     const hash = bcrypt.hashSync(req.body.password, 5);
     const newUser = new User({
@@ -13,19 +14,20 @@ export const register = async (req, res) => {
     await newUser.save();
     res.status(201).send("계정이 생성되었습니다.");
   } catch (err) {
-    res.status(500).send("잘못된 접근입니다.");
+    next(err);
   }
 };
 
-export const login = async (req, res) => {
+export const login = async (req, res, next) => {
   try {
     const user = await User.findOne({ username: req.body.username });
-    if (!user) return res.status(404).send("사용잦를 찾을 수 없습니다.");
+
+    if (!user) return next(createError(404, "사용자를 찾을 수 없습니다."));
 
     //req.body.password와 DB에 저장된 user.password를 비교
     const isCorrect = bcrypt.compareSync(req.body.password, user.password);
     if (!isCorrect)
-      return res.status(400).send("아이디 혹은 비밀번호가 잘못되었습니다.");
+      return next(createError(400, "아이디 혹은 비밀번호가 잘못되었습니다."));
 
     const token = jwt.sign(
       {
@@ -39,7 +41,7 @@ export const login = async (req, res) => {
     const { password, ...info } = user._doc;
     res.cookie("accessToken", token, { httpOnly: true }).status(200).send(info);
   } catch (err) {
-    res.status(500).send("잘못된 접근입니다.");
+    next(err);
   }
 };
 
