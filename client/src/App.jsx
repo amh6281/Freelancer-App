@@ -11,6 +11,7 @@ import Orders from "./pages/orders/Orders";
 import Messages from "./pages/messages/Messages";
 import Message from "./pages/message/Message";
 import Add from "./pages/add/Add";
+import Login from "./pages/login/Login";
 
 const App = () => {
   const Layout = () => {
@@ -59,6 +60,10 @@ const App = () => {
         {
           path: "/add",
           element: <Add />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
         },
       ],
     },

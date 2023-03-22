@@ -10,14 +10,14 @@
     flex-direction: column;
     gap: 20px;
 
-    h1 {
+    h2 {
       color: gray;
       margin-bottom: 20px;
     }
 
     label {
       color: gray;
-      font-size: 18px;
+      font-size: 16px;
     }
 
     input {
@@ -29,8 +29,8 @@
       border: none;
       padding: 20px;
       color: white;
-      font-weight: 500;
-      font-size: 18px;
+      font-weight: 600;
+      font-size: 16px;
       background-color: #1dbf73;
       cursor: pointer;
     }
