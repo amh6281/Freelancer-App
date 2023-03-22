@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import authRoute from "./routes/auth.route.js";
 import userRoute from "./routes/user.route.js";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 const app = express();
 dotenv.config();
@@ -19,6 +20,8 @@ const connect = async () => {
 };
 
 // middleware
+//cors 에러
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 // json 형식 사용
 app.use(express.json());
 // cookie
