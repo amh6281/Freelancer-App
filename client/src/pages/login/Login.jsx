@@ -10,10 +10,14 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8800/api/auth/login", {
-        username,
-        password,
-      });
+      const res = await axios.post(
+        "http://localhost:8800/api/auth/login",
+        {
+          username,
+          password,
+        },
+        { withCredentials: true } // origin이 달라 cookie에 token이 안들어가는 문제 해결
+      );
       console.log(res.data);
     } catch (err) {
       setError(err);
