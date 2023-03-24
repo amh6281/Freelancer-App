@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import newRequest from "../../utils/newRequest";
 import "./Navbar.scss";
 
 const Navbar = () => {
@@ -22,6 +23,18 @@ const Navbar = () => {
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await newRequest.post("/auth/logout");
+      localStorage.setItem("currentUser", null);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className={active || pathname !== "/" ? "navbar active" : "navbar"}>
       <div className="container">
@@ -38,7 +51,7 @@ const Navbar = () => {
           {!currentUser?.isSeller && <span>전문가 등록</span>}
           {currentUser ? (
             <div className="user" onClick={() => setOpen(!open)}>
-              <img src={currentUser?.img || "/img/noavatar.jpg"} alt="" />
+              <img src={currentUser?.img || "img/noavatar.jpg"} alt="" />
               <span>{currentUser?.username}</span>
               {open && (
                 <div className="options">
@@ -58,7 +71,7 @@ const Navbar = () => {
                   <Link className="link" to="/messages">
                     Messages
                   </Link>
-                  <Link className="link" to="/">
+                  <Link className="link" onClick={handleLogout}>
                     Logout
                   </Link>
                 </div>
