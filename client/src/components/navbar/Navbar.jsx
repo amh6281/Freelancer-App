@@ -79,7 +79,9 @@ const Navbar = () => {
             </div>
           ) : (
             <>
-              <span>SIgn In</span>
+              <Link className="link" to="/login">
+                <span>SIgn In</span>
+              </Link>
               <Link className="link" to="/register">
                 <button>JoIn</button>
               </Link>

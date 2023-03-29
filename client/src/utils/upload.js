@@ -7,7 +7,7 @@ const upload = async (file) => {
 
   try {
     const res = await axios.post(
-      "https://api.cloudinary.com/v1_1/dfiijzk7o/image",
+      "https://api.cloudinary.com/v1_1/dfiijzk7o/image/upload",
       data
     );
 

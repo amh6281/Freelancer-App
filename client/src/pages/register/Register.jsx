@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import newRequest from "../../utils/newRequest";
+import upload from "../../utils/upload";
 import "./Register.scss";
 
 const Register = () => {
@@ -13,6 +16,8 @@ const Register = () => {
     desc: "",
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setUser((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
@@ -25,10 +30,24 @@ const Register = () => {
     });
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const url = await upload(file);
+    try {
+      await newRequest.post("/auth/register", {
+        ...user,
+        img: url,
+      });
+      // navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   console.log(user);
   return (
     <div className="register">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="left">
           <h1>회원가입</h1>
           <label htmlFor="">아이디</label>
