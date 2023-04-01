@@ -29,5 +29,15 @@ export const deleteGig = async (req, res, next) => {
     next(err);
   }
 };
-export const getGig = async (req, res, next) => {};
+
+export const getGig = async (req, res, next) => {
+  try {
+    const gig = await Gig.findById(req.params.id);
+    if (!gig) next(createError(404, "작업물을 찾을 수 없습니다."));
+    res.status(200).send(gig);
+  } catch (err) {
+    next(err);
+  }
+};
+
 export const getGigs = async (req, res, next) => {};
