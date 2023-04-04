@@ -3,6 +3,7 @@ import "./Gigs.scss";
 import GigCard from "../../components/gigCard/GigCard";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
+import { useLocation } from "react-router-dom";
 
 const Gigs = () => {
   const [sort, setSort] = useState("sales");
@@ -10,12 +11,18 @@ const Gigs = () => {
   const minRef = useRef();
   const maxRef = useRef();
 
-  const { isLoading, error, data } = useQuery({
+  const { search } = useLocation();
+
+  const { isLoading, error, data, refetch } = useQuery({
     queryKey: ["repoData"],
     queryFn: () =>
-      newRequest.get("/gigs").then((res) => {
-        return res.data;
-      }),
+      newRequest
+        .get(
+          `/gigs${search}&min=${minRef.current.value}&max=${maxRef.current.value}`
+        )
+        .then((res) => {
+          return res.data;
+        }),
   });
 
   console.log(data);
@@ -26,8 +33,7 @@ const Gigs = () => {
   };
 
   const apply = () => {
-    console.log(minRef.current.value);
-    console.log(maxRef.current.value);
+    refetch();
   };
 
   return (
@@ -41,8 +47,8 @@ const Gigs = () => {
         <div className="menu">
           <div className="left">
             <span>가격</span>
-            <input type="text" placeholder="최소" />
-            <input type="text" placeholder="최대" />
+            <input ref={minRef} type="text" placeholder="최소" />
+            <input ref={maxRef} type="text" placeholder="최대" />
             <button onClick={apply}>적용</button>
           </div>
           <div className="right">
@@ -66,7 +72,7 @@ const Gigs = () => {
             ? "loading..."
             : error
             ? "잘못된 접근입니다."
-            : data.map((gig) => <GigCard key={gig.id} gig={gig} />)}
+            : data.map((gig) => <GigCard key={gig._id} gig={gig} />)}
         </div>
       </div>
     </div>
