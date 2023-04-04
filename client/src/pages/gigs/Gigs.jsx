@@ -1,17 +1,21 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./Gigs.scss";
 import GigCard from "../../components/gigCard/GigCard";
-import { gigs } from "../../data";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 
 const Gigs = () => {
   const [sort, setSort] = useState("sales");
   const [open, setOpen] = useState(false);
+  const minRef = useRef();
+  const maxRef = useRef();
 
-  const { isPending, error, data } = useQuery({
+  const { isLoading, error, data } = useQuery({
     queryKey: ["repoData"],
-    queryFn: () => newRequest("/gigs"),
+    queryFn: () =>
+      newRequest.get("/gigs").then((res) => {
+        return res.data;
+      }),
   });
 
   console.log(data);
@@ -19,6 +23,11 @@ const Gigs = () => {
   const reSort = (type) => {
     setSort(type);
     setOpen(false);
+  };
+
+  const apply = () => {
+    console.log(minRef.current.value);
+    console.log(maxRef.current.value);
   };
 
   return (
@@ -34,7 +43,7 @@ const Gigs = () => {
             <span>가격</span>
             <input type="text" placeholder="최소" />
             <input type="text" placeholder="최대" />
-            <button>적용</button>
+            <button onClick={apply}>적용</button>
           </div>
           <div className="right">
             <span className="sortType">
@@ -53,9 +62,11 @@ const Gigs = () => {
           </div>
         </div>
         <div className="cards">
-          {gigs.map((gig) => (
-            <GigCard key={gig.id} gig={gig} />
-          ))}
+          {isLoading
+            ? "loading..."
+            : error
+            ? "잘못된 접근입니다."
+            : data.map((gig) => <GigCard key={gig.id} gig={gig} />)}
         </div>
       </div>
     </div>
