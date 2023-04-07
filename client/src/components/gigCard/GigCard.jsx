@@ -29,7 +29,7 @@ const GigCard = ({ gig }) => {
             "잘못된 접근입니다."
           ) : (
             <div className="user">
-              <img src={data.img || "img/noavatar.jpg"} alt="" />
+              <img src={data.img || "/img/noavatar.jpg"} alt="" />
               <span>{data.username}</span>
             </div>
           )}

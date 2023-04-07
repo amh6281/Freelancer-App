@@ -51,7 +51,7 @@ const Navbar = () => {
           {!currentUser?.isSeller && <span>전문가 등록</span>}
           {currentUser ? (
             <div className="user" onClick={() => setOpen(!open)}>
-              <img src={currentUser?.img || "img/noavatar.jpg"} alt="" />
+              <img src={currentUser?.img || "/img/noavatar.jpg"} alt="" />
               <span>{currentUser?.username}</span>
               {open && (
                 <div className="options">
