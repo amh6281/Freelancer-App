@@ -1,10 +1,12 @@
 import React from "react";
 import "./Reviews.scss";
 import Review from "../review/Review";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 
 const Reviews = ({ gigId }) => {
+  const queryClient = useQueryClient(); // reviews인 queryKey를 사용하기 위해
+
   const { isLoading, error, data } = useQuery({
     queryKey: ["reviews"],
     queryFn: () =>
@@ -13,8 +15,21 @@ const Reviews = ({ gigId }) => {
       }),
   });
 
+  // useMutation은 데이터를 생성/업데이트/삭제
+  const mutation = useMutation({
+    mutationFn: (review) => {
+      return newRequest.post("/reviews", review);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["reviews"]); // useQueryClient를 사용하여 reviews 생성시 결과 전달
+    },
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const desc = e.target[0].value;
+    const star = e.target[1].value;
+    mutation.mutate({ gigId, desc, star });
   };
 
   return (
