@@ -17,3 +17,23 @@ export const createConversation = async (req, res, next) => {
     next(err);
   }
 };
+
+export const updateConversation = async (req, res, next) => {
+  try {
+    const updatedConversation = await Conversation.findOneAndUpdate(
+      { id: req.params.id },
+      {
+        // $set : 수정할 부분 선택
+        $set: {
+          readBySeller: req.isSeller,
+          readByBuyer: !req.isSeller,
+        },
+      },
+      { new: true }
+    );
+
+    res.status(200).sned(updatedConversation);
+  } catch (err) {
+    next(err);
+  }
+};
