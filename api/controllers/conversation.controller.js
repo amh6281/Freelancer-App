@@ -46,3 +46,14 @@ export const getSingleConversation = async (req, res, next) => {
     next(err);
   }
 };
+
+export const getConversations = async (req, res, next) => {
+  try {
+    const conversations = await Conversation.find(
+      req.isSeller ? { sellerId: req.userId } : { buyerId: req.userId }
+    );
+    res.status(200).send(conversations);
+  } catch (err) {
+    next(err);
+  }
+};
