@@ -1,94 +1,66 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Messages.scss";
+import { useQuery } from "@tanstack/react-query";
+import newRequest from "../../utils/newRequest";
+import moment from "moment";
 
 const Messages = () => {
-  const currentUser = {
-    id: 1,
-    username: "Anna",
-    isSeller: true,
-  };
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
-  const message = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-  maxime cum corporis esse aspernatur laborum dolorum? Animi
-  molestias aliquam, cum nesciunt, aut, ut quam vitae saepe repellat
-  nobis praesentium placeat.`;
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["conversations"],
+    queryFn: () =>
+      newRequest.get(`/conversations`).then((res) => {
+        return res.data;
+      }),
+  });
 
   return (
     <div className="messages">
-      <div className="container">
-        <div className="title">
-          <h1>메시지</h1>
+      {isLoading ? (
+        "loading..."
+      ) : error ? (
+        "잘못된 접근입니다."
+      ) : (
+        <div className="container">
+          <div className="title">
+            <h1>메시지</h1>
+          </div>
+          <table>
+            <tr>
+              <th>{currentUser.isSeller ? "구매자" : "판매자"}</th>
+              <th>마지막 메시지</th>
+              <th>날짜</th>
+              <th>상태</th>
+            </tr>
+            {data.map((c) => (
+              <tr
+                className={
+                  ((currentUser.isSeller && !c.readBySeller) ||
+                    (!currentUser.isSeller && !c.readByBuyer)) &&
+                  "active"
+                }
+                key={c.id}
+              >
+                <td>{currentUser.isSeller ? c.buyerId : c.sellerId}</td>
+                <td>
+                  <Link to="/message/123" className="link">
+                    {c?.lastMessage?.substring(0, 100)}...
+                  </Link>
+                </td>
+                <td>{moment(c.updatedAt).fromNow()}</td>
+                <td>
+                  {((currentUser.isSeller && !c.readBySeller) ||
+                    (!currentUser.isSeller && !c.readByBuyer)) && (
+                    <button onClick={() => handleRead(c.id)}>읽음</button>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </table>
         </div>
-        <table>
-          <tr>
-            <th>구매자</th>
-            <th>마지막 메시지</th>
-            <th>날짜</th>
-            <th>상태</th>
-          </tr>
-          <tr className="active">
-            <td>홍길동</td>
-            <td>
-              <Link to="/message/123" className="link">
-                {message.substring(0, 100)}...
-              </Link>
-            </td>
-            <td>하루 전</td>
-            <td>
-              <button>새 메시지</button>
-            </td>
-          </tr>
-          <tr className="active">
-            <td>홍길동</td>
-            <td>
-              <Link to="/message/123" className="link">
-                {message.substring(0, 100)}...
-              </Link>
-            </td>
-            <td>하루 전</td>
-            <td>
-              <button>새 메시지</button>
-            </td>
-          </tr>
-          <tr>
-            <td>홍길동</td>
-            <td>
-              <Link to="/message/123" className="link">
-                {message.substring(0, 100)}...
-              </Link>
-            </td>
-            <td>하루 전</td>
-          </tr>
-          <tr>
-            <td>홍길동</td>
-            <td>
-              <Link to="/message/123" className="link">
-                {message.substring(0, 100)}...
-              </Link>
-            </td>
-            <td>하루 전</td>
-          </tr>
-          <tr>
-            <td>홍길동</td>
-            <td>
-              <Link to="/message/123" className="link">
-                {message.substring(0, 100)}...
-              </Link>
-            </td>
-            <td>하루 전</td>
-          </tr>
-          <tr>
-            <td>홍길동</td>
-            <td>
-              <Link to="/message/123" className="link">
-                {message.substring(0, 100)}...
-              </Link>
-            </td>
-            <td>하루 전</td>
-          </tr>
-        </table>
-      </div>
+      )}
     </div>
   );
 };

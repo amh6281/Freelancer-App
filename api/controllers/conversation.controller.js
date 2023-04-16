@@ -25,8 +25,7 @@ export const updateConversation = async (req, res, next) => {
       {
         // $set : 수정할 부분 선택
         $set: {
-          readBySeller: req.isSeller,
-          readByBuyer: !req.isSeller,
+          ...(req.isSeller ? { readBySeller: true } : { readByBuyer: true }),
         },
       },
       { new: true }
