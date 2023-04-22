@@ -43,3 +43,19 @@ export const getOrders = async (req, res, next) => {
     next(err);
   }
 };
+
+export const confirm = async (req, res, next) => {
+  try {
+    const orders = await Order.findOneAndUpdate(
+      {
+        payment_intent: req.body.payment_intent,
+      },
+      {
+        $set: { isCompleted: true },
+      }
+    );
+    res.status(200).send("주문이 확인되었습니다.");
+  } catch (err) {
+    next(err);
+  }
+};
