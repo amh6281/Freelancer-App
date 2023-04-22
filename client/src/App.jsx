@@ -78,7 +78,7 @@ const App = () => {
           element: <Register />,
         },
         {
-          path: "/pay",
+          path: "/pay/:id",
           element: <Pay />,
         },
         {

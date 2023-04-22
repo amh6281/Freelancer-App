@@ -2,7 +2,7 @@ import React from "react";
 import "./Gig.scss";
 import { Slider } from "infinite-react-carousel/lib";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import newRequest from "../../utils/newRequest";
 import Reviews from "../../components/reviews/Reviews";
 
@@ -154,7 +154,9 @@ function Gig() {
                 </div>
               ))}
             </div>
-            <button>구매하기</button>
+            <Link to={`/pay/${id}`}>
+              <button>구매하기</button>
+            </Link>
           </div>
         </div>
       )}
