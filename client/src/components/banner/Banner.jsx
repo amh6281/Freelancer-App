@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Banner.scss";
+import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
+  const [input, setInput] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    navigate(`/gigs?search=${input}`);
+  };
+
   return (
     <div className="banner">
       <div className="container">
@@ -13,9 +21,13 @@ const Banner = () => {
           <div className="search">
             <div className="searchInput">
               <img src="./img/search.png" alt="" />
-              <input type="text" placeholder="ex) Web Design" />
+              <input
+                type="text"
+                placeholder="ex) Web Design"
+                onChange={(e) => setInput(e.target.value)}
+              />
             </div>
-            <button>검색</button>
+            <button onClick={handleSubmit}>검색</button>
           </div>
           <div className="popular">
             <span>인기 검색어:</span>
