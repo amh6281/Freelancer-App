@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useReducer, useState } from "react";
 import "./Add.scss";
+import { gigReducer, INITIAL_STATE } from "../../reducers/gigReducer";
 
 const Add = () => {
+  const [singleFile, setSingleFile] = useState(undefined);
+  const [files, setFiles] = useState([]);
+  const [uploading, setUploading] = useState(false);
+
+  const [state, dispatch] = useReducer(gigReducer, INITIAL_STATE);
+
+  const handleChange = (e) => {
+    dispatch({
+      type: "CHANGE_INPUT",
+      payload: { name: e.target.name, value: e.target.value },
+    });
+  };
+
   return (
     <div className="add">
       <div className="container">
@@ -9,9 +23,9 @@ const Add = () => {
         <div className="sections">
           <div className="left">
             <label htmlFor="">제목</label>
-            <input type="text" />
+            <input type="text" name="title" onChange={handleChange} />
             <label htmlFor="">카테고리</label>
-            <select name="cats" id="cats">
+            <select name="cat" id="cat" onChange={handleChange}>
               <option value="design">Design</option>
               <option value="web">Web Development</option>
               <option value="animation">Animation</option>
@@ -23,36 +37,44 @@ const Add = () => {
             <input type="file" multiple />
             <label htmlFor="">설명</label>
             <textarea
-              name=""
+              name="desc"
               id=""
               cols="30"
               rows="16"
               placeholder="고객에게 서비스를 소개하기 위한 설명"
+              onChange={handleChange}
             />
             <button>생성</button>
           </div>
           <div className="right">
             <label htmlFor="">서비스 제목</label>
-            <input type="text" placeholder="ex) 웹 디자인 1페이지" />
+            <input
+              type="text"
+              name="shortTitle"
+              placeholder="ex) 웹 디자인 1페이지"
+              onChange={handleChange}
+            />
             <label htmlFor="">짧은 설명</label>
             <textarea
-              name=""
+              name="shortDesc"
+              onChange={handleChange}
               id=""
               placeholder="고객을 위한 짧은 서비스 설명"
               cols="30"
               rows="10"
             />
             <label htmlFor="">소요 시간 ex) 3일 </label>
-            <input type="number" />
+            <input type="number" name="deliveryTime" onChange={handleChange} />
             <label htmlFor="">수정 가능 횟수</label>
-            <input type="number" />
+            <input
+              type="number"
+              name="revisionNumber"
+              onChange={handleChange}
+            />
             <label htmlFor="">기능 추가</label>
             <input type="text" placeholder="ex) 페이지 디자인" />
-            <input type="text" placeholder="ex) 파일 업로드" />
-            <input type="text" placeholder="ex) 도메인 설정" />
-            <input type="text" placeholder="ex) 호스팅" />
             <label htmlFor="">가격</label>
-            <input type="number" />
+            <input type="number" name="price" onChange={handleChange} />
           </div>
         </div>
       </div>
