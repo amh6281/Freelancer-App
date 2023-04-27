@@ -112,7 +112,7 @@ const Add = () => {
               onChange={handleChange}
             />
             <label htmlFor="">기능 추가</label>
-            <form action="" onSubmit={handleFeature}>
+            <form className="add" action="" onSubmit={handleFeature}>
               <input type="text" placeholder="ex) 페이지 디자인" />
               <button type="submit">추가</button>
             </form>

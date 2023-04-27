@@ -37,6 +37,18 @@
           padding: 15px;
         }
 
+        .images {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+
+          .imagesInputs {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+          }
+        }
+
         button {
           border: none;
           padding: 15px;
@@ -45,6 +57,15 @@
           font-weight: 600;
           font-size: 16px;
           cursor: pointer;
+        }
+
+        .add {
+          display: flex;
+          justify-content: space-between;
+
+          input {
+            width: 80%;
+          }
         }
       }
     }
