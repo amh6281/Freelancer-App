@@ -116,6 +116,20 @@ const Add = () => {
               <input type="text" placeholder="ex) 페이지 디자인" />
               <button type="submit">추가</button>
             </form>
+            <div className="addedFeatures">
+              {state?.features?.map((f) => (
+                <div className="item" key={f}>
+                  <button
+                    onClick={() =>
+                      dispatch({ type: "REMOVE_FEATURE", payload: f })
+                    }
+                  >
+                    {f}
+                    <span>X</span>
+                  </button>
+                </div>
+              ))}
+            </div>
             <label htmlFor="">가격</label>
             <input type="number" name="price" onChange={handleChange} />
           </div>
