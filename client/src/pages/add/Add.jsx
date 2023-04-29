@@ -2,6 +2,9 @@ import React, { useReducer, useState } from "react";
 import "./Add.scss";
 import { gigReducer, INITIAL_STATE } from "../../reducers/gigReducer";
 import upload from "../../utils/upload";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import newRequest from "../../utils/newRequest";
+import { useNavigate } from "react-router-dom";
 
 const Add = () => {
   const [singleFile, setSingleFile] = useState(undefined);
@@ -43,7 +46,27 @@ const Add = () => {
       console.log(err);
     }
   };
-  console.log(files);
+
+  const navigate = useNavigate();
+
+  const queryClient = useQueryClient();
+
+  // useMutation은 데이터를 생성/업데이트/삭제
+  const mutation = useMutation({
+    mutationFn: (gig) => {
+      return newRequest.post("/gigs", gig);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["myGigs"]); // useQueryClient를 사용하여 gig 생성시 결과 전달
+    },
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    mutation.mutate(state);
+    navigate("/mygigs");
+  };
+  console.log(state);
   return (
     <div className="add">
       <div className="container">
@@ -73,7 +96,9 @@ const Add = () => {
                   onChange={(e) => setFiles(e.target.files)}
                 />
               </div>
-              <button>{uploading ? "uploading..." : "Upload"}</button>
+              <button onClick={handleUpload}>
+                {uploading ? "uploading..." : "Upload"}
+              </button>
             </div>
             <label htmlFor="">설명</label>
             <textarea
@@ -84,7 +109,7 @@ const Add = () => {
               placeholder="고객에게 서비스를 소개하기 위한 설명"
               onChange={handleChange}
             />
-            <button>생성</button>
+            <button onClick={handleSubmit}>생성</button>
           </div>
           <div className="right">
             <label htmlFor="">서비스 제목</label>
