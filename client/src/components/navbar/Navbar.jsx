@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import newRequest from "../../utils/newRequest";
 import "./Navbar.scss";
+import getCurrentUser from "../../utils/getCurrentUser";
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
@@ -21,7 +22,7 @@ const Navbar = () => {
     };
   }, []);
 
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const currentUser = getCurrentUser();
 
   const navigate = useNavigate();
 

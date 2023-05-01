@@ -32,7 +32,7 @@ const Banner = ({ cards }) => {
           <div className="popular">
             <span>인기 검색어:</span>
             {cards.slice(0, 3).map((card) => (
-              <Link to={`/gigs?cat=${card.link}`}>
+              <Link to={`/gigs?cat=${card.link}`} key={card.id}>
                 <button>{card.title}</button>
               </Link>
             ))}
