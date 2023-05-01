@@ -11,7 +11,7 @@ import ProjectCard from "../../components/projectCard/ProjectCard";
 const Home = () => {
   return (
     <div className="home">
-      <Banner />
+      <Banner cards={cards} />
       <TrustedBy />
       <Slide slidesToShow={5} arrowsScroll={1}>
         {cards.map((card) => (

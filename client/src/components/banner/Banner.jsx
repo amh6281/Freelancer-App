@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./Banner.scss";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const Banner = () => {
+const Banner = ({ cards }) => {
   const [input, setInput] = useState("");
   const navigate = useNavigate();
 
@@ -31,10 +31,11 @@ const Banner = () => {
           </div>
           <div className="popular">
             <span>인기 검색어:</span>
-            <button>Web Design</button>
-            <button>Wordpress</button>
-            <button>Logo Design</button>
-            <button>AI Services</button>
+            {cards.slice(0, 3).map((card) => (
+              <Link to={`/gigs?cat=${card.link}`}>
+                <button>{card.title}</button>
+              </Link>
+            ))}
           </div>
         </div>
         <div className="right">
