@@ -96,7 +96,11 @@ const Navbar = () => {
           <hr />
           <div className="menu">
             {cards.map((card) => (
-              <Link className="link menuLink" to={`/gigs?cat=${card.link}`}>
+              <Link
+                className="link menuLink"
+                to={`/gigs?cat=${card.link}`}
+                key={card.id}
+              >
                 {card.title}
               </Link>
             ))}
