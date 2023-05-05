@@ -7,8 +7,18 @@ import { cards, projects } from "../../data";
 import CatCard from "../../components/catCard/CatCard";
 import Feature from "../../components/feature/Feature";
 import ProjectCard from "../../components/projectCard/ProjectCard";
+import { useQuery } from "@tanstack/react-query";
+import newRequest from "../../utils/newRequest";
 
 const Home = () => {
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["gigs"],
+    queryFn: () =>
+      newRequest.get("/gigs").then((res) => {
+        return res.data;
+      }),
+  });
+  console.log(data);
   return (
     <div className="home">
       <Banner cards={cards} />
@@ -19,11 +29,17 @@ const Home = () => {
         ))}
       </Slide>
       <Feature />
-      <Slide slidesToShow={4} arrowsScroll={1}>
-        {projects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
-      </Slide>
+      {isLoading ? (
+        "loading..."
+      ) : error ? (
+        "잘못된 접근입니다."
+      ) : (
+        <Slide slidesToShow={4} arrowsScroll={1}>
+          {data.map((project) => (
+            <ProjectCard key={project._id} project={project} />
+          ))}
+        </Slide>
+      )}
     </div>
   );
 };
