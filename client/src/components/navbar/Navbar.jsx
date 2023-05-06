@@ -47,9 +47,6 @@ const Navbar = () => {
           <span className="dot">.</span>
         </div>
         <div className="links">
-          <span>Freelancer BusIness</span>
-          <span>Explore</span>
-          <span>Korean</span>
           {!currentUser?.isSeller && <span>전문가 등록</span>}
           {currentUser ? (
             <div className="user" onClick={() => setOpen(!open)}>
@@ -82,10 +79,10 @@ const Navbar = () => {
           ) : (
             <>
               <Link className="link" to="/login">
-                <span>SIgn In</span>
+                <button>로그인</button>
               </Link>
               <Link className="link" to="/register">
-                <button>JoIn</button>
+                <button>회원가입</button>
               </Link>
             </>
           )}
