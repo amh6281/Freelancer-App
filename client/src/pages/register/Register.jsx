@@ -44,7 +44,6 @@ const Register = () => {
     }
   };
 
-  console.log(user);
   return (
     <div className="register">
       <form onSubmit={handleSubmit}>
@@ -78,9 +77,9 @@ const Register = () => {
           <button type="submit">가입하기</button>
         </div>
         <div className="right">
-          <h1>판매자 회원가입</h1>
+          <h1>전문가 등록</h1>
           <div className="toggle">
-            <label htmlFor="">판매자 계정 활성화</label>
+            <label htmlFor="">전문가 활성화</label>
             <label className="switch">
               <input type="checkbox" onChange={handleSeller} />
               <span className="slider round"></span>
