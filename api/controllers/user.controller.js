@@ -16,3 +16,22 @@ export const getUser = async (req, res, next) => {
 
   res.status(200).send(user);
 };
+
+export const updateUser = async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+  if (req.userId !== user._id.toString()) {
+    return next(createError(403, "업데이트할 수 없습니다."));
+  }
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    res.status(200).json(updatedUser);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
