@@ -60,3 +60,18 @@ export const getGigs = async (req, res, next) => {
     next(err);
   }
 };
+
+export const updateGig = async (req, res, next) => {
+  try {
+    const updatedGig = await Gig.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    res.status(200).send(updatedGig);
+  } catch (err) {
+    next(err);
+  }
+};
