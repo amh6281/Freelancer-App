@@ -1,11 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./MyGigs.scss";
 import getCurrentUser from "../../utils/getCurrentUser";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 
 const MyGigs = () => {
+  const navigate = useNavigate();
   const currentUser = getCurrentUser();
 
   const queryClient = useQueryClient();
@@ -31,6 +32,10 @@ const MyGigs = () => {
     mutation.mutate(id);
   };
 
+  const handleUpdate = (id) => {
+    navigate(`/update/gig/${id}`);
+  };
+
   return (
     <div className="myGigs">
       {isLoading ? (
@@ -51,7 +56,8 @@ const MyGigs = () => {
               <th>제목</th>
               <th>가격</th>
               <th>판매량</th>
-              <th>상태</th>
+              <th>삭제</th>
+              <th>수정</th>
             </tr>
             {data.map((gig) => (
               <tr key={gig._id}>
@@ -67,6 +73,14 @@ const MyGigs = () => {
                     src="/img/delete.png"
                     alt=""
                     onClick={() => handleDelete(gig._id)}
+                  />
+                </td>
+                <td>
+                  <img
+                    className="update"
+                    src="/img/search.png"
+                    alt=""
+                    onClick={() => handleUpdate(gig._id)}
                   />
                 </td>
               </tr>
