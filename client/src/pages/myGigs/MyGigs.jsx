@@ -32,10 +32,6 @@ const MyGigs = () => {
     mutation.mutate(id);
   };
 
-  const handleUpdate = (id) => {
-    navigate(`/update/gig/${id}`);
-  };
-
   return (
     <div className="myGigs">
       {isLoading ? (
@@ -80,7 +76,9 @@ const MyGigs = () => {
                     className="update"
                     src="/img/search.png"
                     alt=""
-                    onClick={() => handleUpdate(gig._id)}
+                    onClick={() =>
+                      navigate(`/update/gig/${gig._id}`, { state: { ...gig } })
+                    }
                   />
                 </td>
               </tr>

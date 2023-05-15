@@ -1,7 +1,11 @@
 import React from "react";
 import "./MyGig.scss";
+import { useLocation } from "react-router-dom";
 
 const MyGig = () => {
+  const location = useLocation();
+  const gig = location.state;
+  console.log(gig);
   return (
     <div className="myGig">
       <div className="container">
