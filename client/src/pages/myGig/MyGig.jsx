@@ -18,6 +18,13 @@ const MyGig = () => {
     e.target[0].value = "";
   };
 
+  const handleChange = (e) => {
+    dispatch({
+      type: "CHANGE_INPUT",
+      payload: { name: e.target.name, value: e.target.value },
+    });
+  };
+
   return (
     <div className="myGig">
       <div className="container">
@@ -25,9 +32,14 @@ const MyGig = () => {
         <div className="sections">
           <div className="left">
             <label htmlFor="">제목</label>
-            <input type="text" name="title" placeholder={gig.title} />
+            <input
+              type="text"
+              name="title"
+              placeholder={gig.title}
+              onChange={handleChange}
+            />
             <label htmlFor="">카테고리</label>
-            <select name="cat" id="cat">
+            <select name="cat" id="cat" onChange={handleChange}>
               <option selected>-- {gig.cat} --</option>
               <option value="design">Design</option>
               <option value="web">Web Development</option>
@@ -50,12 +62,18 @@ const MyGig = () => {
               cols="30"
               rows="16"
               placeholder={gig.desc}
+              onChange={handleChange}
             />
             <button>생성</button>
           </div>
           <div className="right">
             <label htmlFor="">서비스 제목</label>
-            <input type="text" name="shortTitle" placeholder={gig.shortTitle} />
+            <input
+              type="text"
+              name="shortTitle"
+              placeholder={gig.shortTitle}
+              onChange={handleChange}
+            />
             <label htmlFor="">짧은 설명</label>
             <textarea
               name="shortDesc"
@@ -63,18 +81,21 @@ const MyGig = () => {
               placeholder={gig.shortDesc}
               cols="30"
               rows="10"
+              onChange={handleChange}
             />
             <label htmlFor="">소요 시간 (일)</label>
             <input
               type="number"
               name="deliveryTime"
               placeholder={gig.deliveryTime}
+              onChange={handleChange}
             />
             <label htmlFor="">수정 가능 횟수</label>
             <input
               type="number"
               name="revisionNumber"
               placeholder={gig.revisionNumber}
+              onChange={handleChange}
             />
             <label htmlFor="">기능 추가</label>
             <form className="add" action="" onSubmit={handleFeature}>
@@ -96,7 +117,12 @@ const MyGig = () => {
               ))}
             </div>
             <label htmlFor="">가격</label>
-            <input type="number" name="price" placeholder={gig.price} />
+            <input
+              type="number"
+              name="price"
+              placeholder={gig.price}
+              onChange={handleChange}
+            />
           </div>
         </div>
       </div>
