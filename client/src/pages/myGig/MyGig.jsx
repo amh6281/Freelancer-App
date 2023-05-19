@@ -1,9 +1,13 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
 import "./MyGig.scss";
 import { useLocation } from "react-router-dom";
 import { INITIAL_STATE, gigReducer } from "../../reducers/gigReducer";
 
 const MyGig = () => {
+  const [singleFile, setSingleFile] = useState(undefined);
+  const [files, setFiles] = useState([]);
+  const [uploading, setUploading] = useState(false);
+
   const location = useLocation();
   const gig = location.state;
 
@@ -23,6 +27,24 @@ const MyGig = () => {
       type: "CHANGE_INPUT",
       payload: { name: e.target.name, value: e.target.value },
     });
+  };
+
+  const handleUpload = async () => {
+    setUploading(true);
+    try {
+      const cover = await upload(singleFile);
+
+      const images = await Promise.all(
+        [...files].map(async (file) => {
+          const url = await upload(file);
+          return url;
+        })
+      );
+      setUploading(false);
+      dispatch({ type: "ADD_IMAGES", payload: { cover, images } });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -49,11 +71,20 @@ const MyGig = () => {
             <div className="images">
               <div className="imagesInputs">
                 <label htmlFor="">커버 이미지</label>
-                <input type="file" />
+                <input
+                  type="file"
+                  onChange={(e) => setSingleFile(e.target.files[0])}
+                />
                 <label htmlFor="">업로드 이미지</label>
-                <input type="file" multiple />
+                <input
+                  type="file"
+                  multiple
+                  onChange={(e) => setFiles(e.target.files)}
+                />
               </div>
-              <button>생성</button>
+              <button onClick={handleUpload}>
+                {uploading ? "업로딩..." : "업로드"}
+              </button>
             </div>
             <label htmlFor="">설명</label>
             <textarea
