@@ -1,7 +1,9 @@
 import React, { useReducer, useState } from "react";
 import "./MyGig.scss";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { INITIAL_STATE, gigReducer } from "../../reducers/gigReducer";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import newRequest from "../../utils/newRequest";
 
 const MyGig = () => {
   const [singleFile, setSingleFile] = useState(undefined);
@@ -47,6 +49,26 @@ const MyGig = () => {
     }
   };
 
+  const navigate = useNavigate();
+
+  const queryClient = useQueryClient();
+
+  // useMutation은 데이터를 생성/업데이트/삭제
+  const mutation = useMutation({
+    mutationFn: (gig) => {
+      return newRequest.put(`/gigs/${gig._id}`, gig);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["myGigs"]); // useQueryClient를 사용하여 gig 생성시 결과 전달
+    },
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    mutation.mutate(state);
+    navigate("/mygigs");
+  };
+  console.log(state);
   return (
     <div className="myGig">
       <div className="container">
@@ -95,7 +117,7 @@ const MyGig = () => {
               placeholder={gig.desc}
               onChange={handleChange}
             />
-            <button>생성</button>
+            <button onClick={handleSubmit}>생성</button>
           </div>
           <div className="right">
             <label htmlFor="">서비스 제목</label>
