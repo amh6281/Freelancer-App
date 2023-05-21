@@ -68,7 +68,7 @@ const MyGig = () => {
     mutation.mutate(state);
     navigate("/mygigs");
   };
-  console.log(state);
+
   return (
     <div className="myGig">
       <div className="container">
