@@ -92,7 +92,7 @@ const App = () => {
           element: <Success />,
         },
         {
-          path: "/myPage",
+          path: "/mypage",
           element: <MyPage />,
         },
       ],
