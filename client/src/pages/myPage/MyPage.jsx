@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import "./MyPage.scss";
 import getCurrentUser from "../../utils/getCurrentUser";
 
 const MyPage = () => {
   const currentUser = getCurrentUser();
-  console.log(currentUser);
+  const [user, setUser] = useState(currentUser);
+  console.log(user);
+
+  const handleSeller = (e) => {
+    setUser((prev) => {
+      return { ...prev, isSeller: !user.isSeller };
+    });
+  };
+
   return (
     <div className="mypage">
       <form>
@@ -31,7 +39,7 @@ const MyPage = () => {
           <div className="toggle">
             <label htmlFor="">전문가 활성화</label>
             <label className="switch">
-              <input type="checkbox" />
+              <input type="checkbox" onChange={handleSeller} />
               <span className="slider round"></span>
             </label>
           </div>
