@@ -7,7 +7,13 @@ const MyPage = () => {
   const [user, setUser] = useState(currentUser);
   console.log(user);
 
-  const handleSeller = (e) => {
+  const handleChange = (e) => {
+    setUser((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
+    });
+  };
+
+  const handleSeller = () => {
     setUser((prev) => {
       return { ...prev, isSeller: !user.isSeller };
     });
@@ -23,15 +29,26 @@ const MyPage = () => {
             name="username"
             type="text"
             placeholder={currentUser.username}
+            onChange={handleChange}
           />
           <label htmlFor="">이메일</label>
-          <input name="email" type="email" placeholder={currentUser.email} />
+          <input
+            name="email"
+            type="email"
+            placeholder={currentUser.email}
+            onChange={handleChange}
+          />
           <label htmlFor="">비밀번호</label>
           <input name="password" type="password" />
           <label htmlFor="">프로필 사진</label>
           <input type="file" />
           <label htmlFor="">국가</label>
-          <input name="country" type="text" placeholder={currentUser.country} />
+          <input
+            name="country"
+            type="text"
+            placeholder={currentUser.country}
+            onChange={handleChange}
+          />
           <button type="submit">업데이트</button>
         </div>
         <div className="right">
@@ -44,7 +61,12 @@ const MyPage = () => {
             </label>
           </div>
           <label htmlFor="">휴대폰 번호</label>
-          <input name="phone" type="text" placeholder={currentUser.phone} />
+          <input
+            name="phone"
+            type="text"
+            placeholder={currentUser.phone}
+            onChange={handleChange}
+          />
           <label htmlFor="">설명</label>
           <textarea
             placeholder={currentUser.desc}
@@ -52,6 +74,7 @@ const MyPage = () => {
             id=""
             cols="30"
             rows="10"
+            onChange={handleChange}
           />
         </div>
       </form>
