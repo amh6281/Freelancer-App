@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import "./MyPage.scss";
 import getCurrentUser from "../../utils/getCurrentUser";
+import upload from "../../utils/upload";
+import newRequest from "../../utils/newRequest";
+import { useNavigate } from "react-router-dom";
 
 const MyPage = () => {
   const currentUser = getCurrentUser();
+
+  const [file, setFile] = useState(currentUser.img);
   const [user, setUser] = useState(currentUser);
-  console.log(user);
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setUser((prev) => {
@@ -19,9 +25,24 @@ const MyPage = () => {
     });
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const url = await upload(file);
+    try {
+      await newRequest.put(`/users/${currentUser._id}`, {
+        ...user,
+        img: url,
+      });
+      navigate("/login");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  console.log(user);
   return (
     <div className="mypage">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="left">
           <h1>마이페이지</h1>
           <label htmlFor="">아이디</label>
@@ -41,7 +62,7 @@ const MyPage = () => {
           <label htmlFor="">비밀번호</label>
           <input name="password" type="password" />
           <label htmlFor="">프로필 사진</label>
-          <input type="file" />
+          <input type="file" onChange={(e) => setFile(e.target.files[0])} />
           <label htmlFor="">국가</label>
           <input
             name="country"
