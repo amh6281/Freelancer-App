@@ -16,8 +16,15 @@
   <br />
   <h2>Home</h2>
 <div>
-  <img src="https://user-images.githubusercontent.com/83646986/218238577-88079bf2-a8ac-4b58-954a-f0a0cce8a10f.gif" /><br />
-  <b>스크롤 기능은 react-anchor-link-smooth-scroll, 애니메이션 기능은 framer-motion 라이브러리를 사용하였습니다.</b>
+  <img src="https://github.com/amh6281/TicToc/assets/83646986/7b7579f4-fc28-4450-ab51-8eb7c5882067" /><br />
+  <b>Navbar, Banner, Category, Gig 등으로 구성하였고, Category와 Gig는 infinite-react-carousel 라이브러리를 사용하였습니다.</b>
+</div>
+<br />
+<br />
+  <h2>Create Gig</h2>
+<div>
+  <img src="https://github.com/amh6281/TicToc/assets/83646986/d27518f7-586d-477a-8ce1-33146d814592" /><br />
+  <b>Gig 생성에 필요한 데이터는 useReducer, 이미지 업로드는 Cloudinary를 사용하였습니다.</b>
 </div>
 <br />
 <br />
