@@ -17,7 +17,7 @@
   <h2>Home</h2>
 <div>
   <img src="https://github.com/amh6281/TicToc/assets/83646986/7b7579f4-fc28-4450-ab51-8eb7c5882067" /><br />
-  <b>Navbar, Banner, Category, Gig 등으로 구성하였고, Category와 Gig는 infinite-react-carousel 라이브러리를 사용하였습니다.</b>
+  <b>Navbar, Banner, Category, Gig 등으로 구성하였고, Category와 Gig는 infinite-react-carousel 라이브러리를<br /> 사용하였습니다.</b>
 </div>
 <br />
 <br />
