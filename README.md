@@ -17,7 +17,21 @@
   <h2>Home</h2>
 <div>
   <img src="https://github.com/amh6281/TicToc/assets/83646986/7b7579f4-fc28-4450-ab51-8eb7c5882067" /><br />
-  <b>Navbar, Banner, Category, Gig 등으로 구성하였고, Category와 Gig는 infinite-react-carousel 라이브러리를<br /> 사용하였습니다.</b>
+  <b>Navbar, Banner, Category, Gig 등으로 구성하였고, Category와 Gig의 슬라이드 기능은<br />infinite-react-carousel 라이브러리를 사용하였습니다.</b>
+</div>
+<br />
+<br />
+<h2>Register & Login</h2>
+<div>
+  <img src="https://github.com/amh6281/TicToc/assets/83646986/9b29b5a1-c56b-42d8-a9e3-71d0f69f9de7" /><br />
+  <b>토글 버튼을 통해 회원가입 시 판매자 or 구매자를 선택할 수 있습니다.</b>
+</div>
+<br />
+<br />
+<h2>User Update</h2>
+<div>
+  <img src="https://github.com/amh6281/TicToc/assets/83646986/4789ef49-6716-4b6b-8218-5d599605b904" /><br />
+  <b>LocalStorage의 currentUser를 기반으로 사용자의 정보를 업데이트할 수 있습니다.</b>
 </div>
 <br />
 <br />
@@ -28,21 +42,52 @@
 </div>
 <br />
 <br />
-<h2>Benefit Component</h2>
+<h2>Gig Update</h2>
 <div>
-  <img src="https://user-images.githubusercontent.com/83646986/218238254-f41588c2-585a-49b5-8c8d-e6c69d244b67.gif" /><br />
-  <b>헬스장에서 제공하는 혜택으로 구성된 Benefit Component입니다.</b>
+  <img src="https://github.com/amh6281/TicToc/assets/83646986/fd3b091f-7570-4257-a01d-1a735cd1b8af" /><br />
+  <b>Gig Update page로 이동 시 useNavigate의 state를 전달하여 기존 정보를 업데이트할 수 있습니다.</b>
 </div>
 <br />
 <br />
-<h2>Contact & Footer Components</h2>
+<h2>카테고리 & 가격 필터링</h2>
 <div>
-  <img src="https://user-images.githubusercontent.com/83646986/218238438-c0737760-dc12-41a8-81d2-5a43bffde271.gif" /><br />
-  <b>Form 구현을 위해 react-hook-form 라이브러리를 사용하였습니다.</b>
+  <img src="https://github.com/amh6281/TicToc/assets/83646986/ce67101b-7b4c-4fb3-be4a-dd1382ceb9cc" /><br />
+  <b>Gig를 카테고리 및 가격으로 필터링할 수 있습니다.</b>
 </div>
 <br />
 <br />
+<h2>Gig 구매</h2>
 <div>
-  <img src="https://user-images.githubusercontent.com/83646986/218239930-cf0d8934-346e-49ee-8c45-e092d458dab5.png" width="800px" height="390px" /><br />
-  <b>정상적으로 문의가 보내진 것을 확인할 수 있습니다.</b>
+  <img src="https://github.com/amh6281/TicToc/assets/83646986/962e3aeb-1ad5-4917-a387-8e853fb445ba" /><br />
+  <b>Stripe.js를 사용하여 결제 기능을 구현하였습니다.</b>
 </div>
+<br />
+<br />
+<h2>리뷰 작성</h2>
+<div>
+  <img src="https://github.com/amh6281/TicToc/assets/83646986/0ff92922-aca4-4dea-bae2-765684aafa40" /><br />
+  <b>구매 시 별점과 내용을 입력하여 리뷰를 작성할 수 있습니다.</b>
+</div>
+<br />
+<br />
+<h2>검색</h2>
+<div>
+  <img src="https://github.com/amh6281/TicToc/assets/83646986/700ffa88-b611-4a23-bd69-a4fc9764a6cd" /><br />
+  <b>Gig의 title or category를 입력하여 검색할 수 있습니다.</b>
+</div>
+<br />
+<br />
+<h2>대화</h2>
+<h3>구매자</h3>
+<div>
+  <img src="https://github.com/amh6281/TicToc/assets/83646986/13680f10-b26f-495c-99df-35dba08d1014" /><br />
+  <b>Gig를 구매한 구매자는 판매자에게 메시지를 보낼 수 있습니다.</b>
+</div>
+<br />
+<h3>판매자</h3>
+<div>
+  <img src="https://github.com/amh6281/TicToc/assets/83646986/f638c174-c378-4534-ab53-3601934749b5" /><br />
+  <b>판매자는 구매자의 메시지를 읽고 답장할 수 있습니다.</b>
+</div>
+<br />
+<br />
